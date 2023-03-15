@@ -1,0 +1,15 @@
+.table {
+
+}
+
+.tr {
+    border: 2px solid black;
+}
+
+.td {
+    padding: 30px;
+    transition: all 200ms ease-in-out;
+}
+.td:hover {
+    background-color: grey;
+}

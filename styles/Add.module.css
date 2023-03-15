@@ -1,0 +1,23 @@
+.container {
+    width: 100%;
+    display: block;
+    font-size: 1.25em;
+}
+.container input {
+    width: 100%;
+    display: block;
+    font-size: 1.25em;
+}
+
+.alert_error {
+    width: 60%;
+    font-size: 1.15em;
+    border-radius: 4px;
+    background: rgba(243, 29, 29, 0.856);
+}
+.alert_success {
+    width: 60%;
+    font-size: 1.15em;
+    border-radius: 4px;
+    background: rgb(115, 255, 0);
+}

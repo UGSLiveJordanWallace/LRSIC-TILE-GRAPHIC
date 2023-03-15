@@ -1,0 +1,29 @@
+.card {
+    border: 3px solid black;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px black;
+    margin: auto auto;
+}
+
+.cardbody {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.cardlink {
+    display: block;
+    font-size: 3em;
+    padding: 30px;
+    border: 3px solid black;
+}
+
+.cardgrid {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    width: 100%;
+    height: 100vh;
+}

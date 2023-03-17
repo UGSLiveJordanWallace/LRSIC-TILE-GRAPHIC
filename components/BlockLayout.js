@@ -29,7 +29,7 @@ const BlockLayout = ({ tiles, numOfRows, numOfColumns }) => {
     }, []);
 
     return (
-        <div name="block-layout" style={{display: "grid", gridTemplateColumns: `repeat(${numOfColumns}, 1fr)`, height: "100vh"}}>
+        <div name="block-layout" style={{display: "grid", gridTemplateColumns: `repeat(${numOfColumns}, 1fr)`}}>
             {tileLayout}
         </div>
     )

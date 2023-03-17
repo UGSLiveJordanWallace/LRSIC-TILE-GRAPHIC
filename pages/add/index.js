@@ -1,7 +1,11 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from '../../styles/Add.module.css';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
 
 export default function AddTilePage() {
+    const router = useRouter()
+
     // Authentication
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -21,6 +25,18 @@ export default function AddTilePage() {
     const [success, setSuccess] = useState("");
     const [loading, setLoading] = useState(false);
 
+    useEffect(() => {
+        const cookie = Cookies.get('auth');
+        if (!cookie) {
+            router.push('/login');
+        } else {
+            const auth = JSON.parse(cookie);
+            if (!auth.tileEditor) {
+                router.push('/login');
+            }
+        }
+    }, [])
+
     async function handleAdd(e) {
         e.preventDefault();
 
@@ -29,8 +45,6 @@ export default function AddTilePage() {
         setError('');
 
         const data = {
-            email: emailRef.current.value,
-            password: passwordRef.current.value,
             name: nameRef.current.value,
             description: descriptionRef.current.value,
             row: rowRef.current.value,
@@ -41,22 +55,7 @@ export default function AddTilePage() {
             section: isUpper.current.checked ? "upper" : "lower",
         };
 
-        await fetch('http://localhost:3001/create-tile', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data)
-        }).then(response => response.json()).then(response => {
-            if (response.errorMessage) {
-                setLoading(false);
-                return setError(response.errorMessage)
-            } 
-            if (response.successMessage) {
-                setLoading(false);
-                return setSuccess(response.successMessage);
-            }
-        });
+        
     }
 
     return (

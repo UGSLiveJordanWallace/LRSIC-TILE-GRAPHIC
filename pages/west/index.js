@@ -18,17 +18,19 @@ export default function WestBlockPage() {
   // Error/Success states
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
+  // Android User
+  const [usingAndroid, setUsingAndroid] = useState(false);
   
-  // DB
   const db = new PocketBase('https://lrsic-tiles-server.fly.dev');
 
   useEffect(() => {
     async function getTiles() {
-      let result;
       let tempLowerTiles = [];
       let tempUpperTiles = [];
       const records = await db.collection('tiles').getFullList({
-        sort: '-created',
+        '$autoCancel': false,
+        sort: '+row',
       });
       for (let i = 0; i < records.length; i++) {
         if (records[i].section === "upper") {
@@ -42,6 +44,14 @@ export default function WestBlockPage() {
     }
     getTiles();
   }, []);
+
+  useEffect(() => {
+    let details = navigator.userAgent;
+
+    let regexp = /android/i;
+    
+    setUsingAndroid(regexp.test(details));
+  }, [])
 
   function handleSearch(e) {
     e.preventDefault();
@@ -187,12 +197,14 @@ export default function WestBlockPage() {
       
       {searchRender && <div style={{width: "100%", height: "100vh", background: "white"}}>
         <h3>Search Tiles</h3>
-        <MenuSelect style={{width: "80%"}} ref={searchType}>
+        <label>Tile Property</label>
+        <MenuSelect style={{width: "80%", display: "block"}} ref={searchType}>
           <MenuOption value="name">Tile Name</MenuOption>
           <MenuOption value="description">Tile Description</MenuOption>
           <MenuOption value="donor">Tile Donor</MenuOption>
-        </MenuSelect>        
-        <input onChange={handleSearch}/>
+        </MenuSelect>
+        <label>What Are You Looking For? </label>
+        <input style={{width: "50%", margin: "0 auto", padding: "2.5px", fontSize: "1.2em"}} onChange={handleSearch}/>
         <div style={{width: "60%", textAlign: "center", fontSize: "1.3em", margin: "0 auto"}}>
           {searchResults.length > 0 && searchResults.map((val, key) => {
             return <Card key={key}>
@@ -200,15 +212,20 @@ export default function WestBlockPage() {
                 <h4>{val.name}</h4>
                 <h5>{val.description}</h5>
                 <h5>Row: {val.row} Column: {val.col}</h5>
-                <Button onClick={(e) => findPaverLocation(e, val)} style={{fontSize: "2em"}}>Locate</Button>
+                <Button onClick={(e) => findPaverLocation(e, val)} style={{fontSize: "1.5em"}}>Locate</Button>
               </CardBody>
             </Card>
           })}
         </div>
       </div>}
 
-      {sectRender && sectRender !== "none" && <Button onClick={() => setSearchRender(!searchRender)} style={{position: "fixed", left: "10px", bottom: "10px", background: "white", fontSize: searchRender && "4em"}}>{searchRender ? "Close" : "Find"}</Button>}
-      {sectRender && sectRender !== "none" && !searchRender && <Button onClick={() => setSectRender("none")} style={{position: "fixed", right: "10px", bottom: "10px", background: "white"}}>Back</Button>}
+      {usingAndroid ? <>  
+        {sectRender && sectRender !== "none" && <Button onClick={() => setSearchRender(!searchRender)} style={{position: "fixed", left: "10px", bottom: "10px", background: "white", fontSize: searchRender ? "4em": "10em"}}>{searchRender ? "Close" : "Find"}</Button>}
+        {sectRender && sectRender !== "none" && !searchRender && <Button onClick={() => setSectRender("none")} style={{position: "fixed", right: "10px", bottom: "10px", background: "white", fontSize: "10em"}}>Back</Button>}
+      </> : <>  
+        {sectRender && sectRender !== "none" && <Button onClick={() => setSearchRender(!searchRender)} style={{position: "fixed", left: "10px", bottom: "10px", background: "white", color: "black", fontSize: searchRender ? "4em": "1.5em", border: "1px solid black"}}>{searchRender ? "Close" : "Find"}</Button>}
+        {sectRender && sectRender !== "none" && !searchRender && <Button onClick={() => setSectRender("none")} style={{position: "fixed", right: "10px", bottom: "10px", background: "white", color: "black", fontSize: "1.5em"}}>Back</Button>}
+      </>}
     </div>
   )
 }

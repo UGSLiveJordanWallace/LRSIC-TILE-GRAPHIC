@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from '../styles/MenuSelect.module.css';
 
-const MenuSelect = React.forwardRef(({ children }, ref) => {
+const MenuSelect = React.forwardRef(({ children, ...rest }, ref) => {
   return (
-    <select className={styles.menu} ref={ref}>
+    <select className={styles.menu} {...rest} ref={ref}>
       {children}
     </select>
   )
@@ -11,9 +11,9 @@ const MenuSelect = React.forwardRef(({ children }, ref) => {
 
 MenuSelect.displayName = 'MenuSelect';
 
-export const MenuOption = ({ value, children }) => {
+export const MenuOption = ({ value, children, ...rest }) => {
   return (
-    <option value={value}>{children}</option>
+    <option value={value} {...rest}>{children}</option>
   )
 }
 

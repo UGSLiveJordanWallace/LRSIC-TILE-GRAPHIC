@@ -3,7 +3,7 @@ import BlockLayout, { RenderDefaultDisplay } from '../../components/BlockLayout'
 import Button from '../../components/Button';
 import MenuSelect, { MenuOption } from '../../components/MenuSelect';
 import Card, { CardBody } from '../../components/Card';
-import PocketBase from 'pocketbase'
+import PocketBase from 'pocketbase';
 
 export default function WestBlockPage() {
   // Tiles
@@ -21,7 +21,7 @@ export default function WestBlockPage() {
 
   // Android User
   const [usingAndroid, setUsingAndroid] = useState(false);
-  
+
   const db = new PocketBase('https://lrsic-tiles-server.fly.dev');
 
   useEffect(() => {
@@ -127,6 +127,7 @@ export default function WestBlockPage() {
         for (let i = 0; i < upperTiles.length; i++) {
           if (upperTiles[i].color) {
             delete upperTiles[i].color;
+            delete upperTiles[i].direction;
           }
         }
 
@@ -139,14 +140,22 @@ export default function WestBlockPage() {
               continue;
             }
             pathCoords.push({paver: upperTiles[i], index: i})
-            upperTiles[i]["color"] = "yellow";
+            if (upperTiles[i].col > paver.col) {
+              upperTiles[i]["color"] = "cyan";
+              upperTiles[i]["direction"] = "left";
+            }
+            if (upperTiles[i].col < paver.col) {
+              upperTiles[i]["color"] = "cyan";
+              upperTiles[i]["direction"] = "right";
+            }
           }
           if (upperTiles[i].col === offset) {
             if (tileFound && upperTiles[i].row > paver.row) {
               break;
             }
             pathCoords.push({paver: upperTiles[i], index: i});
-            upperTiles[i]["color"] = "yellow";
+            upperTiles[i]["color"] = "blue";
+            upperTiles[i]["direction"] = "up";
           }
         }
         setSearchRender(false);
@@ -158,6 +167,7 @@ export default function WestBlockPage() {
         for (let i = 0; i < lowerTiles.length; i++) {
           if (lowerTiles[i].color) {
             delete lowerTiles[i].color;
+            delete lowerTiles[i].direction;
           }
         }
 
@@ -171,14 +181,22 @@ export default function WestBlockPage() {
               continue;
             }
             pathCoords.push({paver: lowerTiles[i], index: i})
-            lowerTiles[i]["color"] = "yellow";
+            if (lowerTiles[i].col > paver.col) {
+              lowerTiles[i]["color"] = "cyan";
+              lowerTiles[i]["direction"] = "left";
+            }
+            if (lowerTiles[i].col < paver.col) {
+              lowerTiles[i]["color"] = "cyan";
+              lowerTiles[i]["direction"] = "right";
+            }
           }
           if (lowerTiles[i].col === 1) {
             if (tileFound && lowerTiles[i].row > paver.row) {
               break;
             }
             pathCoords.push({paver: lowerTiles[i], index: i});
-            lowerTiles[i]["color"] = "yellow";
+            lowerTiles[i]["color"] = "blue";
+            lowerTiles[i]["direction"] = "up";
           }
         }
         setSearchRender(false);

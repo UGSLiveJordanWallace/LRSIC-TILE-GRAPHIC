@@ -14,7 +14,7 @@ const BlockLayout = ({ tiles, numOfRows, numOfColumns }) => {
                 let isTile = false;
                 tiles.map(val => {
                     if (val.row === i && val.col === j) {
-                        tempTileLayout.push(<Tile name={val.name} description={val.description} row={i} col={j} key={n} color={val.color ? val.color : "red"}/>)
+                        tempTileLayout.push(<Tile name={val.name} description={val.description} row={i} col={j} key={n} direction={val.direction ? val.direction : "none"} color={val.color ? val.color : "red"}/>)
                         isTile = true;
                         n++;
                     }

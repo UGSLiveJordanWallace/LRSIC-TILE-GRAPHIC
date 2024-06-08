@@ -4,7 +4,7 @@ import React from 'react'
 const Button = ({ children, onClick, ...rest }) => {
   return (
     <>
-      {<button onClick={onClick} styles={button_small} {...rest}>
+      {<button onClick={onClick} {...rest}>
         {children}
       </button>}
     </>

@@ -1,7 +1,6 @@
 import Card, { CardBody, CardGrid, CardLink } from '../components/Card';
 
 export default function Home() {
-  
 	return (
 		<CardGrid>
 			<div>

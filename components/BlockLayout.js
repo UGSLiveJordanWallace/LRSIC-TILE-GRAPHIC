@@ -38,8 +38,13 @@ const BlockLayout = ({ tiles, numOfRows, numOfColumns }) => {
 export const RenderDefaultDisplay = ({ setRender }) => {
     return (
         <div style={{display: "flex", alignItems: "center", justifyContent: "center", height: "100vh", textAlign: "center"}}>
-            <Button onClick={() => setRender("upper")}>Upper</Button>
-            <Button onClick={() => setRender("lower")}>Lower</Button>
+            <Button onClick={() => {
+                setTimeout(() => {
+                    window.scrollTo(document.body.scrollWidth / 2 - document.body.scrollWidth / 4, document.body.scrollHeight);
+                }, 200)
+                setRender("upper");
+            }} style={{display: "inline-block", fontSize: "3em"}}>Upper</Button>
+            <Button onClick={() => setRender("lower")} style={{display: "inline-block", marginLeft: "20px", fontSize: "3em"}}>Lower</Button>
         </div>
     )
 }

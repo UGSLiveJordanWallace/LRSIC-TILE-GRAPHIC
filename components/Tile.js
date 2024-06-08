@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import { AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineArrowUp } from 'react-icons/ai';
 
 const Tile = ({ name, description, row, col, color, direction, ...rest }) => {

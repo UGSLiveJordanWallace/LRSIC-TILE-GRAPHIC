@@ -81,4 +81,5 @@ export const EmptyTile = () => {
         </>
     );
 };
+
 export default Tile;

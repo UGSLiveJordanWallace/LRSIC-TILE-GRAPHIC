@@ -1,6 +1,11 @@
 import db from "./pdb";
 
-export async function getTiles(setUpperTiles, setLowerTiles, setLoading, block) {
+export async function getTiles(
+    setUpperTiles,
+    setLowerTiles,
+    setLoading,
+    block,
+) {
     let tempLowerTiles = [];
     let tempUpperTiles = [];
     const records = await db.collection("tiles").getFullList({
@@ -17,7 +22,7 @@ export async function getTiles(setUpperTiles, setLowerTiles, setLoading, block) 
     }
     setUpperTiles(tempUpperTiles);
     setLowerTiles(tempLowerTiles);
-	setLoading(false);
+    setLoading(false);
 }
 
 export function searchPavers(

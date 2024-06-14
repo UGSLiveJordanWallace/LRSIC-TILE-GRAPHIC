@@ -22,7 +22,7 @@ export default function EastBlockPage() {
     const searchType = useRef();
     // Error/Success states
     const [error, setError] = useState("");
-	const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         getTiles(setUpperTiles, setLowerTiles, setLoading, "east");
@@ -52,12 +52,9 @@ export default function EastBlockPage() {
         );
     }
 
-	if (loading) {
-		return (
-			<div className="loading">
-			</div>
-		)
-	}
+    if (loading) {
+        return <div className="loading"></div>;
+    }
 
     return (
         <>

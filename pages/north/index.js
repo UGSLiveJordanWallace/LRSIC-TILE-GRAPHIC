@@ -18,7 +18,7 @@ export default function NorthBlockPage() {
     const searchType = useRef();
     // Error/Success states
     const [error, setError] = useState("");
-	const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         getTiles(() => {}, setLowerTiles, setLoading, "north");
@@ -42,12 +42,9 @@ export default function NorthBlockPage() {
         locatePaverCoords("lower", paver, [], lowerTiles, setSearchRender);
     }
 
-	if (loading) {
-		return (
-			<div className="loading">
-			</div>
-		)
-	}		
+    if (loading) {
+        return <div className="loading"></div>;
+    }
 
     return (
         <>
@@ -58,8 +55,8 @@ export default function NorthBlockPage() {
                     numOfColumns={27}
                 />
             ) : (
-				<BlockLayout tiles={[]} numOfRows={35} numOfColumns={27} />
-			)}
+                <BlockLayout tiles={[]} numOfRows={35} numOfColumns={27} />
+            )}
 
             {searchRender && (
                 <SearchPage

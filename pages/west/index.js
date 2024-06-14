@@ -9,7 +9,6 @@ import {
     searchPavers,
     locatePaverCoords,
 } from "../../services/utils";
-import { EmptyTile } from "../../components/Tile";
 
 export default function WestBlockPage() {
     // Tiles
@@ -22,11 +21,11 @@ export default function WestBlockPage() {
     // Tile Variable Ref
     const searchType = useRef();
     // Error/Success states
-	const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
     useEffect(() => {
-		getTiles(setUpperTiles, setLowerTiles, setLoading, "west")
+        getTiles(setUpperTiles, setLowerTiles, setLoading, "west");
     }, []);
 
     function handleSearch(e) {
@@ -53,13 +52,9 @@ export default function WestBlockPage() {
         );
     }
 
-
-	if (loading) {
-		return (
-			<div className="loading">
-			</div>
-		)
-	}
+    if (loading) {
+        return <div className="loading"></div>;
+    }
 
     return (
         <>

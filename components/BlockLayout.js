@@ -66,8 +66,22 @@ export const RenderDefaultDisplay = ({ setRender }) => {
                 textAlign: "center",
             }}
         >
-            <Button onClick={() => setRender("upper")}>Upper</Button>
-            <Button onClick={() => setRender("lower")}>Lower</Button>
+            <Button
+                onClick={() => setRender("upper")}
+                style={{ display: "inline-block", fontSize: "3em" }}
+            >
+                Upper
+            </Button>
+            <Button
+                onClick={() => setRender("lower")}
+                style={{
+                    display: "inline-block",
+                    marginLeft: "20px",
+                    fontSize: "3em",
+                }}
+            >
+                Lower
+            </Button>
         </div>
     );
 };

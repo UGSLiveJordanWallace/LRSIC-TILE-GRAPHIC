@@ -1,5 +1,4 @@
 import db from "./pdb";
-import { redirect } from "next/navigation";
 
 export async function signUp(email, password, confirmPassword) {
     try {

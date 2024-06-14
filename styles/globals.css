@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.loading {
+	content: '';
+	position: absolute;
+	height: 100vh;
+	width: 100%;
+	background-color: #86efac;
+	animation: 2s infinite ease-in-out loading;
+}
+
+@keyframes loading {
+	0% {
+		transform: translateY(100%);
+	}
+	50% {
+		transform: translateY(0);
+		bottom: 0;
+	}
+	100% {
+		bottom: 100vh;
+	}
+}

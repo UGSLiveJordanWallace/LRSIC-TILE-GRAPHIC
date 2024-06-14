@@ -1,0 +1,75 @@
+import React, { useEffect, useState } from "react";
+import Button from "./Button";
+import Tile, { EmptyTile } from "./Tile";
+
+const BlockLayout = ({ tiles, numOfRows, numOfColumns }) => {
+    const [tileLayout, setTileLayout] = useState([]);
+    let tempTileLayout = [];
+
+    useEffect(() => {
+        let n = 0;
+        tempTileLayout = [];
+        for (let i = numOfRows; i >= 1; i--) {
+            for (let j = 1; j <= numOfColumns; j++) {
+                let isTile = false;
+                tiles.map((val) => {
+                    if (val.row === i && val.col === j) {
+                        tempTileLayout.push(
+                            <Tile
+                                name={val.name}
+                                description={val.description}
+                                row={i}
+                                col={j}
+                                key={n}
+                                direction={
+                                    val.direction ? val.direction : "none"
+                                }
+                                color={val.color ? val.color : "red"}
+                            />,
+                        );
+                        isTile = true;
+                        n++;
+                    }
+                });
+                if (!isTile) {
+                    tempTileLayout.push(
+                        <EmptyTile key={n} row={i} col={j} color={"red"} />,
+                    );
+                    n++;
+                }
+            }
+        }
+        setTileLayout(tempTileLayout);
+    }, []);
+
+    return (
+        <div
+            name="block-layout"
+            style={{
+                display: "grid",
+                gridTemplateColumns: `repeat(${numOfColumns}, 1fr)`,
+            }}
+        >
+            {tileLayout}
+        </div>
+    );
+};
+
+export const RenderDefaultDisplay = ({ setRender }) => {
+    return (
+        <div
+            style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100vh",
+                textAlign: "center",
+            }}
+        >
+            <Button onClick={() => setRender("upper")}>Upper</Button>
+            <Button onClick={() => setRender("lower")}>Lower</Button>
+        </div>
+    );
+};
+
+export default BlockLayout;

@@ -15,6 +15,8 @@ export default function WestBlockPage() {
     const [sectRender, setSectRender] = useState("none");
     const [lowerTiles, setLowerTiles] = useState([]);
     const [upperTiles, setUpperTiles] = useState([]);
+    const [coloredUpperTiles, setColoredUpperTiles] = useState([]);
+    const [coloredLowerTiles, setColoredLowerTiles] = useState([]);
     // Tile Search
     const [searchResults, setSearchResults] = useState([]);
     const [searchRender, setSearchRender] = useState(false);
@@ -22,10 +24,20 @@ export default function WestBlockPage() {
     const searchType = useRef();
     // Error/Success states
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
+    const [error, setError] = useState();
+
+	const upperBlockRef = useRef();
+	const lowerBlockRef = useRef();
 
     useEffect(() => {
-        getTiles(setUpperTiles, setLowerTiles, setLoading, "west");
+        getTiles(
+            setUpperTiles,
+            setLowerTiles,
+            setColoredUpperTiles,
+            setColoredLowerTiles,
+            setLoading,
+            "west",
+        );
     }, []);
 
     function handleSearch(e) {
@@ -50,6 +62,22 @@ export default function WestBlockPage() {
             lowerTiles,
             setSearchRender,
         );
+
+		setTimeout(() => {
+			if (sectRender === "upper") {
+				upperBlockRef.current.scrollIntoView({
+					behavior: "smooth",
+					block: "end",
+					inline: "nearest",
+				})
+			} else {
+				lowerBlockRef.current.scrollIntoView({
+					behavior: "smooth",
+					block: "end",
+					inline: "nearest",
+				})
+			}
+		}, 50)
     }
 
     if (loading) {
@@ -66,6 +94,8 @@ export default function WestBlockPage() {
                     tiles={upperTiles}
                     numOfRows={13}
                     numOfColumns={52}
+                    coloredTiles={coloredUpperTiles}
+					ref={upperBlockRef}
                 />
             )}
             {sectRender && sectRender === "lower" && !searchRender && (
@@ -73,6 +103,8 @@ export default function WestBlockPage() {
                     tiles={lowerTiles}
                     numOfRows={35}
                     numOfColumns={27}
+                    coloredTiles={coloredLowerTiles}
+					ref={lowerBlockRef}
                 />
             )}
 
@@ -82,6 +114,7 @@ export default function WestBlockPage() {
                     searchResults={searchResults}
                     handleSearch={handleSearch}
                     findPaverLocation={findPaverLocation}
+					error={error}
                 />
             )}
             {error && <p>Something Went Wrong: {error}!!</p>}
@@ -90,13 +123,7 @@ export default function WestBlockPage() {
                 {sectRender && sectRender !== "none" && (
                     <Button
                         onClick={() => setSearchRender(!searchRender)}
-                        style={{
-                            position: "fixed",
-                            left: "10px",
-                            bottom: "10px",
-                            background: "white",
-                            fontSize: "3.5em",
-                        }}
+						className="fixed left-5 bottom-5 rounded p-3 bg-white shadow-xl border border-neutral-900 text-3xl"
                     >
                         {searchRender ? "Close" : "Find"}
                     </Button>
@@ -104,13 +131,7 @@ export default function WestBlockPage() {
                 {sectRender && sectRender !== "none" && !searchRender && (
                     <Button
                         onClick={() => setSectRender("none")}
-                        style={{
-                            position: "fixed",
-                            right: "10px",
-                            bottom: "10px",
-                            background: "white",
-                            fontSize: "3.5em",
-                        }}
+						className="fixed right-5 bottom-5 rounded p-3 bg-white shadow-xl border border-neutral-900 text-3xl"
                     >
                         Back
                     </Button>

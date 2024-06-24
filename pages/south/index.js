@@ -11,6 +11,7 @@ import {
 export default function SouthBlockPage() {
     // Tiles
     const [lowerTiles, setLowerTiles] = useState([]);
+	const [coloredLowerTiles, setColoredLowerTiles] = useState([])
     // Tile Search
     const [searchResults, setSearchResults] = useState([]);
     const [searchRender, setSearchRender] = useState(false);
@@ -20,8 +21,10 @@ export default function SouthBlockPage() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
 
+	const blockRef = useRef();
+
     useEffect(() => {
-        getTiles(() => {}, setLowerTiles, setLoading, "south");
+        getTiles(() => {}, setLowerTiles, () => {}, setColoredLowerTiles, setLoading, "south");
     }, []);
 
     function handleSearch(e) {
@@ -40,6 +43,13 @@ export default function SouthBlockPage() {
     async function findPaverLocation(e, paver) {
         e.preventDefault();
         locatePaverCoords("lower", paver, [], lowerTiles, setSearchRender);
+		setTimeout(() => {
+			blockRef.current.scrollIntoView({
+				behavior: "smooth",
+				block: "end",
+				inline: "nearest",
+			})
+		}, 50)
     }
 
     if (loading) {
@@ -48,14 +58,14 @@ export default function SouthBlockPage() {
 
     return (
         <>
-            {!searchRender && lowerTiles.length > 0 ? (
+            {!searchRender && lowerTiles.length > 0 && (
                 <BlockLayout
                     tiles={lowerTiles}
                     numOfRows={35}
                     numOfColumns={27}
+					coloredTiles={coloredLowerTiles}
+					ref={blockRef}
                 />
-            ) : (
-                <BlockLayout tiles={[]} numOfRows={35} numOfColumns={27} />
             )}
 
             {searchRender && (
@@ -64,23 +74,18 @@ export default function SouthBlockPage() {
                     searchResults={searchResults}
                     handleSearch={handleSearch}
                     findPaverLocation={findPaverLocation}
+					error={error}
                 />
             )}
             {error && <p>Something Went Wrong: {error}!!</p>}
 
             <div>
-                <Button
-                    onClick={() => setSearchRender(!searchRender)}
-                    style={{
-                        position: "fixed",
-                        left: "10px",
-                        bottom: "10px",
-                        background: "white",
-                        fontSize: "3.5em",
-                    }}
-                >
-                    {searchRender ? "Close" : "Find"}
-                </Button>
+				<Button
+					onClick={() => setSearchRender(!searchRender)}
+					className="fixed left-5 bottom-5 rounded p-3 bg-white shadow-xl border border-neutral-900 text-3xl"
+				>
+					{searchRender ? "Close" : "Find"}
+				</Button>
             </div>
         </>
     );

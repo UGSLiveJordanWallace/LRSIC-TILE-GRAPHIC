@@ -1,8 +1,8 @@
-import Card, { CardBody, CardGrid, CardLink } from "../components/Card";
+import Card, { CardBody, CardLink } from "../components/Card";
 
 export default function Home() {
     return (
-        <div className="grid grid-cols-3 gap-2 text-5xl h-screen">
+        <div className="grid grid-cols-3 text-5xl h-screen">
             <div></div>
             <div className="flex justify-center items-center">
                 <Card>

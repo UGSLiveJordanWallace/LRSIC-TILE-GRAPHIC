@@ -4,81 +4,28 @@ import {
     AiOutlineArrowUp,
 } from "react-icons/ai";
 
-const Tile = ({ name, description, row, col, color, direction, ...rest }) => {
+const Tile = ({ name, direction, color, ...rest }) => {
     return (
-        <>
-            {window.innerWidth >= 720 && (
-                <div
-                    {...rest}
-                    style={{
-                        display: "inline-block",
-                        height: "90px",
-                        width: "90px",
-                        background: color,
-                        border: "1px solid black",
-                        textAlign: "center",
-                        fontSize: ".8em",
-                    }}
-                >
-                    <h3>{name}</h3>
-                    {direction === "left" && <AiOutlineArrowLeft />}
-                    {direction === "right" && <AiOutlineArrowRight />}
-                    {direction === "up" && <AiOutlineArrowUp />}
-                </div>
-            )}
-            {window.innerWidth <= 720 && (
-                <div
-                    {...rest}
-                    style={{
-                        display: "inline-block",
-                        height: "120px",
-                        width: "110px",
-                        background: color,
-                        border: "1px solid black",
-                        textAlign: "center",
-                        fontSize: ".8em",
-                    }}
-                >
-                    <h3>{name}</h3>
-                    {direction === "left" && <AiOutlineArrowLeft />}
-                    {direction === "right" && <AiOutlineArrowRight />}
-                    {direction === "up" && <AiOutlineArrowUp />}
-                </div>
-            )}
-        </>
+		<div
+			{...rest}
+			className={"inline-block overflow-hidden size-16 border border-black text-center font-bold text-xs mobile:text-base mobile:size-24"}
+			style={{backgroundColor: color}}
+		>
+			<h3>{name}</h3>
+			{direction === "left" && <AiOutlineArrowLeft className="m-auto size-8"/>}
+			{direction === "right" && <AiOutlineArrowRight className="m-auto size-8"/>}
+			{direction === "up" && <AiOutlineArrowUp className="m-auto size-8"/>}
+		</div>
     );
 };
 
-export const EmptyTile = () => {
+export const EmptyTile = ({ color, ...rest }) => {
     return (
-        <>
-            {window.innerWidth >= 720 && (
-                <div
-                    style={{
-                        display: "inline-block",
-                        height: "90px",
-                        width: "90px",
-                        background: "red",
-                        border: "1px solid black",
-                        textAlign: "center",
-                        fontSize: ".8em",
-                    }}
-                ></div>
-            )}
-            {window.innerWidth <= 720 && (
-                <div
-                    style={{
-                        display: "inline-block",
-                        height: "120px",
-                        width: "110px",
-                        background: "red",
-                        border: "1px solid black",
-                        textAlign: "center",
-                        fontSize: ".8em",
-                    }}
-                ></div>
-            )}
-        </>
+		<div
+			{...rest}
+			className={`inline-block size-16 border border-black mobile:size-24`}
+			style={{backgroundColor: color}}
+		></div>
     );
 };
 

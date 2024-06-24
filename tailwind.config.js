@@ -5,7 +5,11 @@ const config = {
         "./components/**/*.{js,ts,jsx,tsx,mdx}",
     ],
     theme: {
-        extend: {},
+        screens: {
+            mobile: "660px",
+            desktop: "800px",
+            wide: "1200px",
+        },
     },
     plugins: [],
 };

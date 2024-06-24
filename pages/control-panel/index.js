@@ -20,7 +20,6 @@ export default function ControlPanelPage() {
     const [coloredLowerTiles, setColoredLowerTiles] = useState([]);
     const [showUpper, setShowUpper] = useState(false);
     const [showEdit, setShowEdit] = useState(true);
-	const [showSpreadSheet, setShowSpreadSheet] = useState(false)
     const [newTiles, setNewTiles] = useState([]);
     const [error, setError] = useState();
 
@@ -40,7 +39,6 @@ export default function ControlPanelPage() {
     useEffect(() => {
 		async function getData() {
 			setShowEdit(true)
-			setShowSpreadSheet(false)
 			setShowUpper(false)
 			setError()
 			await getTiles(

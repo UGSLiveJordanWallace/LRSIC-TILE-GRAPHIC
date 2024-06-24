@@ -46,6 +46,7 @@ export default function UploadPage() {
 			setShowUpper(false)
 			setShowEdit(true)
 			setError()
+			setNewTiles([])
 			await getTiles(
 				setUpperTiles,
 				setLowerTiles,
@@ -222,6 +223,7 @@ export default function UploadPage() {
 
 			{showUpper &&
 				!showEdit &&
+					upperTiles.length > 0 &&
 					<ControlPanelBlockLayout
 						tiles={upperTiles}
 						newTiles={newTiles}

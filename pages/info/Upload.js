@@ -36,7 +36,7 @@ export default function UploadPage() {
                     </label>
 				</div>
                 <p className="inline-block w-full text-xl text-center mt-10">
-					Once uploaded, you can preview the changes you've made within th blocks you defined in the original (.xlsx).
+					Once uploaded, you can preview the changes you have made within th blocks you defined in the original (.xlsx).
 				</p>
             </div>
         </div>

@@ -26,8 +26,8 @@ export default function WestBlockPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState();
 
-	const upperBlockRef = useRef();
-	const lowerBlockRef = useRef();
+    const upperBlockRef = useRef();
+    const lowerBlockRef = useRef();
 
     useEffect(() => {
         getTiles(
@@ -63,21 +63,21 @@ export default function WestBlockPage() {
             setSearchRender,
         );
 
-		setTimeout(() => {
-			if (sectRender === "upper") {
-				upperBlockRef.current.scrollIntoView({
-					behavior: "smooth",
-					block: "end",
-					inline: "nearest",
-				})
-			} else {
-				lowerBlockRef.current.scrollIntoView({
-					behavior: "smooth",
-					block: "end",
-					inline: "nearest",
-				})
-			}
-		}, 50)
+        setTimeout(() => {
+            if (sectRender === "upper") {
+                upperBlockRef.current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "end",
+                    inline: "nearest",
+                });
+            } else {
+                lowerBlockRef.current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "end",
+                    inline: "nearest",
+                });
+            }
+        }, 50);
     }
 
     if (loading) {
@@ -95,7 +95,7 @@ export default function WestBlockPage() {
                     numOfRows={13}
                     numOfColumns={52}
                     coloredTiles={coloredUpperTiles}
-					ref={upperBlockRef}
+                    ref={upperBlockRef}
                 />
             )}
             {sectRender && sectRender === "lower" && !searchRender && (
@@ -104,7 +104,7 @@ export default function WestBlockPage() {
                     numOfRows={35}
                     numOfColumns={27}
                     coloredTiles={coloredLowerTiles}
-					ref={lowerBlockRef}
+                    ref={lowerBlockRef}
                 />
             )}
 
@@ -114,7 +114,7 @@ export default function WestBlockPage() {
                     searchResults={searchResults}
                     handleSearch={handleSearch}
                     findPaverLocation={findPaverLocation}
-					error={error}
+                    error={error}
                 />
             )}
             {error && <p>Something Went Wrong: {error}!!</p>}
@@ -123,7 +123,7 @@ export default function WestBlockPage() {
                 {sectRender && sectRender !== "none" && (
                     <Button
                         onClick={() => setSearchRender(!searchRender)}
-						className="fixed left-5 bottom-5 rounded p-3 bg-white shadow-xl border border-neutral-900 text-3xl"
+                        className="fixed left-5 bottom-5 rounded p-3 bg-white shadow-xl border border-neutral-900 text-3xl"
                     >
                         {searchRender ? "Close" : "Find"}
                     </Button>
@@ -131,7 +131,7 @@ export default function WestBlockPage() {
                 {sectRender && sectRender !== "none" && !searchRender && (
                     <Button
                         onClick={() => setSectRender("none")}
-						className="fixed right-5 bottom-5 rounded p-3 bg-white shadow-xl border border-neutral-900 text-3xl"
+                        className="fixed right-5 bottom-5 rounded p-3 bg-white shadow-xl border border-neutral-900 text-3xl"
                     >
                         Back
                     </Button>

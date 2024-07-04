@@ -5,6 +5,9 @@ export default function CorruptPage() {
     const router = useRouter();
 
     useEffect(() => {
-        router.replace("/");
-    }, []);
+		function redirect() {
+			return router.replace("/")
+		}
+		redirect()
+    }, [router]);
 }

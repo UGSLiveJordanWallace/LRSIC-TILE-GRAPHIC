@@ -7,6 +7,7 @@ import readXlsxFile from "read-excel-file";
 import TabButton from "../../components/TabButton";
 import Button from "../../components/Button";
 import Link from "next/link";
+import { getTokenPayload } from "pocketbase";
 
 export default function UploadPage() {
     const [currentUser, setCurrentUser] = useState();
@@ -29,34 +30,38 @@ export default function UploadPage() {
     const router = useRouter();
 
     useEffect(() => {
-        async function getUser() {
-            const data = await db.authStore.model;
-            if (data) {
+        function getUser() {
+            const data = db.authStore.model;
+            if (
+                data &&
+                (getTokenPayload(db.authStore.token).type === "admin" ||
+                    data.tileEditor === true)
+            ) {
                 setCurrentUser(data);
                 setLoading(false);
                 return;
             }
-            router.replace("/auth/login");
+            return router.replace("/auth/login");
         }
         getUser();
-    }, []);
+    }, [router]);
 
     useEffect(() => {
-		async function getData() {
-			setShowUpper(false)
-			setShowEdit(true)
-			setError()
-			setNewTiles([])
-			await getTiles(
-				setUpperTiles,
-				setLowerTiles,
-				setColoredUpperTiles,
-				setColoredLowerTiles,
-				setLoading,
-				tab,
-			);
-		}
-		getData();
+        async function getData() {
+            setShowUpper(false);
+            setShowEdit(true);
+            setError();
+            setNewTiles([]);
+            await getTiles(
+                setUpperTiles,
+                setLowerTiles,
+                setColoredUpperTiles,
+                setColoredLowerTiles,
+                setLoading,
+                tab,
+            );
+        }
+        getData();
     }, [tab]);
 
     function handleLogout(e) {
@@ -73,9 +78,9 @@ export default function UploadPage() {
     async function handleFileUpload(e) {
         e.preventDefault();
 
-		setDoubleError();
-		setError();
-		setDoublesPositions([]);
+        setDoubleError();
+        setError();
+        setDoublesPositions([]);
 
         let tempNewTiles = [];
         let doubles = 0;
@@ -127,14 +132,16 @@ export default function UploadPage() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-		if (showEdit || newTiles.length < 1) {
-			return setError(`Failed to Submit: Empty List of New Tiles`)
-		}
+        if (showEdit || newTiles.length < 1) {
+            return setError(`Failed to Submit: Empty List of New Tiles`);
+        }
+        setLoading(true);
         const record = await createTiles(newTiles);
         if (record.error) {
             setError(record);
             return;
         }
+        setLoading(false);
         router.refresh();
     }
 
@@ -171,8 +178,9 @@ export default function UploadPage() {
                             <Button
                                 style={{ backgroundColor: "#ef4444" }}
                                 onClick={handleSubmit}
+                                disabled={loading}
                             >
-                                Submit
+                                {loading ? "In Progress" : "Submit"}
                             </Button>
                         )}
                     </div>
@@ -180,24 +188,39 @@ export default function UploadPage() {
                 <Button onClick={() => setShowEdit(!showEdit)}>Edit</Button>
                 {showEdit && (
                     <Link
-						className="hidden m-3 text-xl border border-black rounded bg-green-300 desktop:block desktop:p-6 desktop:text-2xl wide:text-5xl"
+                        className="hidden m-3 text-xl border border-black rounded bg-green-300 desktop:block desktop:p-6 desktop:text-2xl wide:text-5xl"
                         href="/control-panel"
                     >
                         Manual
                     </Link>
                 )}
-				{currentUser && <Button onClick={handleLogout}>Logout</Button>}
+                {currentUser && <Button onClick={handleLogout}>Logout</Button>}
             </div>
 
-            {duplicatesError && <p className="block w-11/12 m-auto text-xl text-red-900 p-6 bg-red-200 border border-black rounded">{duplicatesError}</p>}
+            {duplicatesError && (
+                <p className="block w-11/12 m-auto text-xl text-red-900 p-6 bg-red-200 border border-black rounded">
+                    {duplicatesError}
+                </p>
+            )}
             {duplicatesPositions && duplicatesPositions.length > 0 && (
                 <div className="w-full mt-1 h-24 overflow-auto">
                     {duplicatesPositions.map((val, key) => {
-                        return <p className="block w-11/12 m-auto text-xl text-red-900 p-6 bg-red-200 border border-black rounded" key={key}>{val}</p>;
+                        return (
+                            <p
+                                className="block w-11/12 m-auto text-xl text-red-900 p-6 bg-red-200 border border-black rounded"
+                                key={key}
+                            >
+                                {val}
+                            </p>
+                        );
                     })}
                 </div>
             )}
-			{error && <p className="block w-11/12 m-auto text-xl text-red-900 p-6 bg-red-200 border border-black rounded">{error}</p>}
+            {error && (
+                <p className="block w-11/12 m-auto text-xl text-red-900 p-6 bg-red-200 border border-black rounded">
+                    {error}
+                </p>
+            )}
 
             {showEdit && (
                 <form
@@ -220,30 +243,26 @@ export default function UploadPage() {
                 </form>
             )}
 
-
-			{showUpper &&
-				!showEdit &&
-					upperTiles.length > 0 &&
-					<ControlPanelBlockLayout
-						tiles={upperTiles}
-						newTiles={newTiles}
-						section={"upper"}
-						numOfRows={13}
-						numOfColumns={52}
-						coloredTiles={coloredUpperTiles}
-					/>
-				}
-			{!showUpper &&
-				!showEdit &&
-					<ControlPanelBlockLayout
-						tiles={lowerTiles}
-						newTiles={newTiles}
-						section={"lower"}
-						numOfRows={35}
-						numOfColumns={27}
-						coloredTiles={coloredLowerTiles}
-					/>
-				}
+            {showUpper && !showEdit && upperTiles.length > 0 && (
+                <ControlPanelBlockLayout
+                    tiles={upperTiles}
+                    newTiles={newTiles}
+                    section={"upper"}
+                    numOfRows={13}
+                    numOfColumns={52}
+                    coloredTiles={coloredUpperTiles}
+                />
+            )}
+            {!showUpper && !showEdit && (
+                <ControlPanelBlockLayout
+                    tiles={lowerTiles}
+                    newTiles={newTiles}
+                    section={"lower"}
+                    numOfRows={35}
+                    numOfColumns={27}
+                    coloredTiles={coloredLowerTiles}
+                />
+            )}
         </div>
     );
 }

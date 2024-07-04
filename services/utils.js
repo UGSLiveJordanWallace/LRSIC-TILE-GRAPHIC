@@ -8,7 +8,7 @@ export async function getTiles(
     setLoading,
     block,
 ) {
-	setLoading(true)
+    setLoading(true);
     let tempLowerTiles = [];
     let tempUpperTiles = [];
     const records = await db.collection("tiles").getFullList({
@@ -154,7 +154,7 @@ export async function locatePaverCoords(
                 }
             }
             setSearchRender(false);
-			window.scrollTo()
+            window.scrollTo();
             break;
         case "lower":
             for (let i = 0; i < lowerTiles.length; i++) {
@@ -218,7 +218,7 @@ export async function deleteTile(tile) {
         await db.collection("tiles").delete(tile.id);
         return { success: "Successfully Deleted Tile" };
     } catch (error) {
-        return error;
+        return { error: error };
     }
 }
 
@@ -236,6 +236,19 @@ export async function updateTile(tile) {
         await db.collection("tiles").update(tile.id, data);
         return { success: "Successfully Updated Tile" };
     } catch (error) {
-        return error;
+        return { error: error };
+    }
+}
+
+export async function updateUsers(users) {
+    try {
+        for (let i = 0; i < users.length; i++) {
+            await db
+                .collection("users")
+                .update(users[i].id, { tileEditor: users[i].tileEditor });
+        }
+        return { success: "Successfully Updated Tile" };
+    } catch (error) {
+        return { error: error };
     }
 }

@@ -22,7 +22,15 @@ export async function signUp(email, password, confirmPassword) {
 export async function signIn(email, password) {
     try {
         await db.collection("users").authWithPassword(email, password);
+        return { successMessage: "Logged In Successfully" };
+    } catch (error) {
+        return { errorMessage: `Couldn't Login: ${error}` };
+    }
+}
 
+export async function adminSignIn(email, password) {
+    try {
+        await db.admins.authWithPassword(email, password);
         return { successMessage: "Logged In Successfully" };
     } catch (error) {
         return { errorMessage: `Couldn't Login: ${error}` };

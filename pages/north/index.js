@@ -12,7 +12,7 @@ import clsx from "clsx";
 export default function NorthBlockPage() {
     // Tiles
     const [lowerTiles, setLowerTiles] = useState([]);
-	const [coloredLowerTiles, setColoredLowerTiles] = useState([])
+    const [coloredLowerTiles, setColoredLowerTiles] = useState([]);
     // Tile Search
     const [searchResults, setSearchResults] = useState([]);
     const [searchRender, setSearchRender] = useState(false);
@@ -22,10 +22,17 @@ export default function NorthBlockPage() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
 
-	const blockRef = useRef()
+    const blockRef = useRef();
 
     useEffect(() => {
-        getTiles(() => {}, setLowerTiles, () => {}, setColoredLowerTiles, setLoading, "north");
+        getTiles(
+            () => {},
+            setLowerTiles,
+            () => {},
+            setColoredLowerTiles,
+            setLoading,
+            "north",
+        );
     }, []);
 
     function handleSearch(e) {
@@ -43,14 +50,20 @@ export default function NorthBlockPage() {
 
     async function findPaverLocation(e, paver) {
         e.preventDefault();
-        await locatePaverCoords("lower", paver, [], lowerTiles, setSearchRender);
-		setTimeout(() => {
-			blockRef.current.scrollIntoView({
-				behavior: "smooth",
-				block: "end",
-				inline: "nearest",
-			})
-		}, 50)
+        await locatePaverCoords(
+            "lower",
+            paver,
+            [],
+            lowerTiles,
+            setSearchRender,
+        );
+        setTimeout(() => {
+            blockRef.current.scrollIntoView({
+                behavior: "smooth",
+                block: "end",
+                inline: "nearest",
+            });
+        }, 50);
     }
 
     if (loading) {
@@ -64,8 +77,8 @@ export default function NorthBlockPage() {
                     tiles={lowerTiles}
                     numOfRows={35}
                     numOfColumns={27}
-					coloredTiles={coloredLowerTiles}
-					ref={blockRef}
+                    coloredTiles={coloredLowerTiles}
+                    ref={blockRef}
                 />
             )}
 
@@ -75,18 +88,18 @@ export default function NorthBlockPage() {
                     searchResults={searchResults}
                     handleSearch={handleSearch}
                     findPaverLocation={findPaverLocation}
-					error={error}
+                    error={error}
                 />
             )}
             {error && <p>Something Went Wrong: {error}!!</p>}
 
             <div>
-				<Button
-					onClick={() => setSearchRender(!searchRender)}
-					className="fixed left-5 bottom-5 rounded p-3 bg-white shadow-xl border border-neutral-900 text-3xl"
-				>
-					{searchRender ? "Close" : "Find"}
-				</Button>
+                <Button
+                    onClick={() => setSearchRender(!searchRender)}
+                    className="fixed left-5 bottom-5 rounded p-3 bg-white shadow-xl border border-neutral-900 text-3xl"
+                >
+                    {searchRender ? "Close" : "Find"}
+                </Button>
             </div>
         </div>
     );

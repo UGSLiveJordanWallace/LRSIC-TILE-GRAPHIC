@@ -15,8 +15,8 @@ export default function EastBlockPage() {
     const [sectRender, setSectRender] = useState("none");
     const [lowerTiles, setLowerTiles] = useState([]);
     const [upperTiles, setUpperTiles] = useState([]);
-	const [coloredUpperTiles, setColoredUpperTiles] = useState([]);
-	const [coloredLowerTiles, setColoredLowerTiles] = useState([]);
+    const [coloredUpperTiles, setColoredUpperTiles] = useState([]);
+    const [coloredLowerTiles, setColoredLowerTiles] = useState([]);
     // Tile Search
     const [searchResults, setSearchResults] = useState([]);
     const [searchRender, setSearchRender] = useState(false);
@@ -26,11 +26,18 @@ export default function EastBlockPage() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
 
-	const upperBlockRef = useRef();
-	const lowerBlockRef = useRef();
+    const upperBlockRef = useRef();
+    const lowerBlockRef = useRef();
 
     useEffect(() => {
-        getTiles(setUpperTiles, setLowerTiles, setColoredUpperTiles, setColoredLowerTiles, setLoading, "east");
+        getTiles(
+            setUpperTiles,
+            setLowerTiles,
+            setColoredUpperTiles,
+            setColoredLowerTiles,
+            setLoading,
+            "east",
+        );
     }, []);
 
     function handleSearch(e) {
@@ -55,21 +62,21 @@ export default function EastBlockPage() {
             lowerTiles,
             setSearchRender,
         );
-		setTimeout(() => {
-			if (sectRender === "upper") {
-				upperBlockRef.current.scrollIntoView({
-					behavior: "smooth",
-					block: "end",
-					inline: "nearest",
-				})
-			} else {
-				lowerBlockRef.current.scrollIntoView({
-					behavior: "smooth",
-					block: "end",
-					inline: "nearest",
-				})
-			}
-		}, 50)
+        setTimeout(() => {
+            if (sectRender === "upper") {
+                upperBlockRef.current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "end",
+                    inline: "nearest",
+                });
+            } else {
+                lowerBlockRef.current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "end",
+                    inline: "nearest",
+                });
+            }
+        }, 50);
     }
 
     if (loading) {
@@ -86,8 +93,8 @@ export default function EastBlockPage() {
                     tiles={upperTiles}
                     numOfRows={13}
                     numOfColumns={52}
-					coloredTiles={coloredUpperTiles}
-					ref={upperBlockRef}
+                    coloredTiles={coloredUpperTiles}
+                    ref={upperBlockRef}
                 />
             )}
             {sectRender && sectRender === "lower" && !searchRender && (
@@ -95,8 +102,8 @@ export default function EastBlockPage() {
                     tiles={lowerTiles}
                     numOfRows={35}
                     numOfColumns={27}
-					coloredTiles={coloredLowerTiles}
-					ref={lowerBlockRef}
+                    coloredTiles={coloredLowerTiles}
+                    ref={lowerBlockRef}
                 />
             )}
 

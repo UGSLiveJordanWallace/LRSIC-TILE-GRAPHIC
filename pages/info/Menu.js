@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Button from "../../components/Button";
+import { BsDashLg } from "react-icons/bs";
 
 export default function MenuPage() {
     return (
@@ -51,31 +52,44 @@ export default function MenuPage() {
                         <Button>Logout</Button>
                     </div>
                 </div>
-                <p className="inline-block w-full text-xl text-center mt-10">
-                    The <strong className="text-3xl text-bold">Upper</strong>{" "}
-                    and <strong className="text-3xl text-bold">Lower</strong>{" "}
-                    buttons switch between sections when previewing the east or
-                    west blocks.
-                </p>
-                <p className="inline-block w-full text-xl text-center">
-                    The{" "}
-                    <strong className="text-3xl text-bold">
-                        Edit or Preview
-                    </strong>{" "}
-                    button switches between edit and preview mode. If the page
-                    is glitching or not rendering properly, click this button
-                    twice to fix it.
-                </p>
-                <strong className="text-3xl text-bold"></strong>
-                <p className="inline-block w-full text-xl text-center">
-                    The <strong className="text-3xl text-bold">Add Tile</strong>{" "}
-                    button adds a tile to the new tiles spreadsheet.
-                </p>
-                <p className="inline-block w-full text-xl text-center">
-                    The <strong className="text-3xl text-bold">Upload</strong>{" "}
-                    button sends you to a page where you can upload an excel
-                    file.
-                </p>
+				<ul className="block w-5/6 m-auto text-left">
+					<li className="flex flex-row gap-2 justify-end items-center">
+						<strong className="flex-initial text-3xl text-bold">Upper</strong>{" "}
+						<strong className="flex-initial text-3xl text-bold">Lower</strong>{" "}
+						<div><BsDashLg className="size-12" /></div>
+						<p className="flex-auto inline text-xl text-left">
+							buttons switch between sections when previewing the east or
+							west blocks.
+						</p>
+					</li>
+					<li className="flex flex-row gap-2 justify-center text-balance items-center">
+						<strong className="flex-initial text-3xl text-bold">
+							Edit or Preview
+						</strong>
+						<div><BsDashLg className="size-12" /></div>
+						<p className="flex-auto inline text-xl text-left">
+							button switches between edit and preview mode. If the page
+							is glitching or not rendering properly, click this button
+							twice to fix it.
+						</p>
+					</li>
+					<li className="flex flex-row gap-2 justify-center items-center">
+						<strong className="flex-initial text-3xl text-bold">Add Tile</strong>{" "}
+						<div><BsDashLg className="size-12" /></div>
+						<p className="flex-auto inline text-xl text-left">
+							button adds a tile to the new tiles spreadsheet.
+						</p>
+					</li>
+					<li className="flex flex-row gap-2 justify-center items-center">
+						<strong className="flex-initial text-3xl text-bold">Upload</strong>
+						<div><BsDashLg className="size-12" /></div>
+						<p className="flex-auto inline text-xl text-left">
+							The {" "}
+							button sends you to a page where you can upload an excel
+							file.
+						</p>
+					</li>
+				</ul>
             </div>
         </div>
     );

@@ -9,11 +9,11 @@ const Tile = ({ name, direction, color, ...rest }) => {
         <div
             {...rest}
             className={
-                "inline-block overflow-hidden size-16 border border-black text-center font-bold text-xs mobile:text-base mobile:size-24"
+                "inline-block text-wrap overflow-hidden size-16 border border-black text-center font-bold text-xs text-white mobile:text-base mobile:size-32"
             }
             style={{ backgroundColor: color }}
         >
-            <h3>{name}</h3>
+            <h3 className="inline-block w-5/6">{name}</h3>
             {direction === "left" && (
                 <AiOutlineArrowLeft className="m-auto size-8" />
             )}
@@ -31,7 +31,7 @@ export const EmptyTile = ({ color, ...rest }) => {
     return (
         <div
             {...rest}
-            className={`inline-block size-16 border border-black mobile:size-24`}
+            className={`inline-block size-16 border border-black mobile:size-32`}
             style={{ backgroundColor: color }}
         ></div>
     );

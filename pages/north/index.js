@@ -8,11 +8,13 @@ import {
     locatePaverCoords,
 } from "../../services/utils";
 import clsx from "clsx";
+import { useSearchParams } from "next/navigation";
 
 export default function NorthBlockPage() {
     // Tiles
     const [lowerTiles, setLowerTiles] = useState([]);
     const [coloredLowerTiles, setColoredLowerTiles] = useState([]);
+	const [tilesRendered, setTilesRendered] = useState(false);
     // Tile Search
     const [searchResults, setSearchResults] = useState([]);
     const [searchRender, setSearchRender] = useState(false);
@@ -24,15 +26,47 @@ export default function NorthBlockPage() {
 
     const blockRef = useRef();
 
+	const searchParams = useSearchParams()
+
+	useEffect(() => {
+		if (tilesRendered) {
+			if (searchParams.has("row") && searchParams.has("col") && searchParams.has('section')) {
+				setSearchRender(false)
+				const paver = {
+					row: JSON.parse(searchParams.get("row")),
+					col: JSON.parse(searchParams.get("col"))
+				}
+				locatePaverCoords(
+					searchParams.get("section"),
+					paver,
+					[],
+					lowerTiles,
+					setSearchRender,
+				)
+				setTimeout(() => {
+					blockRef.current.scrollIntoView({
+						behavior: "smooth",
+						block: "end",
+						inline: "nearest",
+					});
+				}, 100)
+			}
+		}
+	}, [tilesRendered])
+
     useEffect(() => {
-        getTiles(
-            () => {},
-            setLowerTiles,
-            () => {},
-            setColoredLowerTiles,
-            setLoading,
-            "north",
-        );
+		async function getTilesAndSearchParams() {
+			await getTiles(
+				() => {},
+				setLowerTiles,
+				() => {},
+				setColoredLowerTiles,
+				setLoading,
+				"north",
+			);
+			setTilesRendered(true)
+		}
+		getTilesAndSearchParams();
     }, []);
 
     function handleSearch(e) {

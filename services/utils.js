@@ -132,16 +132,16 @@ export async function locatePaverCoords(
             for (let i = 0; i < upperTiles.length; i++) {
                 if (upperTiles[i].row === paver.row) {
                     if (upperTiles[i].col === paver.col) {
-                        upperTiles[i]["color"] = "white";
+                        upperTiles[i]["color"] = "#020617";
                         tileFound = true;
                         continue;
                     }
                     if (upperTiles[i].col > paver.col) {
-                        upperTiles[i]["color"] = "#6ee7b7";
+                        upperTiles[i]["color"] = "#334155";
                         upperTiles[i]["direction"] = "left";
                     }
                     if (upperTiles[i].col < paver.col) {
-                        upperTiles[i]["color"] = "#5eead4";
+                        upperTiles[i]["color"] = "#334155";
                         upperTiles[i]["direction"] = "right";
                     }
                 }
@@ -149,7 +149,7 @@ export async function locatePaverCoords(
                     if (tileFound && upperTiles[i].row > paver.row) {
                         break;
                     }
-                    upperTiles[i]["color"] = "#0ea5e9";
+                    upperTiles[i]["color"] = "#1e293b";
                     upperTiles[i]["direction"] = "up";
                 }
             }
@@ -167,16 +167,16 @@ export async function locatePaverCoords(
             for (let i = 0; i < lowerTiles.length; i++) {
                 if (lowerTiles[i].row === paver.row) {
                     if (lowerTiles[i].col === paver.col) {
-                        lowerTiles[i]["color"] = "white";
+                        lowerTiles[i]["color"] = "#020617";
                         tileFound = true;
                         continue;
                     }
                     if (lowerTiles[i].col > paver.col) {
-                        lowerTiles[i]["color"] = "#6ee7b7";
+                        lowerTiles[i]["color"] = "#334155";
                         lowerTiles[i]["direction"] = "left";
                     }
                     if (lowerTiles[i].col < paver.col) {
-                        lowerTiles[i]["color"] = "#5eead4";
+                        lowerTiles[i]["color"] = "#334155";
                         lowerTiles[i]["direction"] = "right";
                     }
                 }
@@ -184,7 +184,7 @@ export async function locatePaverCoords(
                     if (tileFound && lowerTiles[i].row > paver.row) {
                         break;
                     }
-                    lowerTiles[i]["color"] = "#0ea5e9";
+                    lowerTiles[i]["color"] = "#1e293b";
                     lowerTiles[i]["direction"] = "up";
                 }
             }

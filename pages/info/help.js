@@ -11,7 +11,7 @@ import UploadPage from "./Upload";
 export default function HelpPage() {
     const [currentUser, setCurrentUser] = useState({});
     const [loading, setLoading] = useState(true);
-    const [view, setView] = useState("upload");
+    const [view, setView] = useState("layout");
 
     useEffect(() => {
         function getUser() {

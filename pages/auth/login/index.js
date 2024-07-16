@@ -14,6 +14,7 @@ export default function LoginPage() {
         e.preventDefault();
 
         setLoading(true);
+		setError();
         const response = await signIn(
             emailRef.current.value,
             passwordRef.current.value,
@@ -62,6 +63,7 @@ export default function LoginPage() {
                     type="submit"
                     value={loading ? "..." : "Login"}
                 />
+				<Link href="/auth/reset-password" className="block w-1/5 m-auto p-3 bg-white border-black mt-3 shadow rounded">Reset Password</Link>
             </form>
             <Link
                 href="/auth/signup"

@@ -69,7 +69,6 @@ export default function SpreadsheetPage() {
                                             d="M12 4.5v15m7.5-7.5h-15"
                                         />
                                     </svg>
-                                    <p className="inline-block">or</p>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
@@ -113,7 +112,6 @@ export default function SpreadsheetPage() {
                             d="M12 4.5v15m7.5-7.5h-15"
                         />
                     </svg>
-                    <p className="inline-block">or</p>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"

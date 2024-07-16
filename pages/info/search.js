@@ -1,16 +1,45 @@
-import MenuSelect, { MenuOption } from "./MenuSelect";
-import Card, { CardBody } from "./Card";
-import Button from "./Button";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import Card, { CardBody } from "../../components/Card";
+import MenuSelect, { MenuOption } from "../../components/MenuSelect";
+import db from "../../services/pdb";
 
-export default function SearchPage({
-    searchType,
-    handleSearch,
-    searchResults,
-    findPaverLocation,
-    error,
-}) {
-    return (
-        <div className="flex flex-col w-full h-screen text-center bg-stone-50 overflow-hidden">
+export default function SearchAllPage() {
+	const searchType = useRef();
+	const [searchResults, setSearchResults] = useState([]);
+	const [error, setError] = useState();
+	const [tiles, setTiles] = useState([]);
+
+	useEffect(() => {
+		async function getTiles() {
+			const results = await db.collection('tiles').getFullList({
+				$autoCancel: false,
+				sort: '-created'
+			})
+			setTiles(results);
+		}
+		getTiles()
+	}, [])
+	
+	async function handleSearch(e) {
+		e.preventDefault()
+
+		setError()
+
+		const searchTerm = e.target.value
+		const results = tiles.filter((item) => {
+			return item.name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
+		})
+		if (results.length < 1) {
+			setError("No Tiles Found")
+			setSearchResults([])
+			return
+		} 
+		setSearchResults(results)
+	}
+
+	return (
+        <div className="flex flex-col items-center w-full h-screen text-center bg-stone-50 overflow-hidden">
             <h1 className="flex-initial text-5xl">Search Tiles</h1>
             <MenuSelect
                 ref={searchType}
@@ -34,25 +63,27 @@ export default function SearchPage({
                         return (
                             <Card key={key}>
                                 <CardBody>
-                                    <h4 className="text-2xl">{val.name}</h4>
+                                    <h4 className="text-4xl">{val.name}</h4>
                                     <h5 className="text-lg">
                                         {val.description}
                                     </h5>
                                     <h5 className="text-lg">
                                         Row: {val.row} Column: {val.col}
                                     </h5>
-                                    <Button
-                                        onClick={(e) =>
-                                            findPaverLocation(e, val)
-                                        }
+									<h5 className="text-lg">
+										Block: {val.block}
+									</h5>
+                                    <Link
+										href={`/${val.block}?row=${val.row}&col=${val.col}&section=${val.section}`}
+										className="inline-block text-center p-2 m-3 border border-black rounded text-lg mobile:text-xl wide:text-5xl"
                                     >
                                         Locate
-                                    </Button>
+                                    </Link>
                                 </CardBody>
                             </Card>
                         );
                     })}
             </div>
         </div>
-    );
+	)
 }

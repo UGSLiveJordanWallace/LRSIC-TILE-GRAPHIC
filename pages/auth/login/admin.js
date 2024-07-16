@@ -14,6 +14,7 @@ export default function AdminLoginPage() {
         e.preventDefault();
 
         setLoading(true);
+		setError();
         const response = await adminSignIn(
             emailRef.current.value,
             passwordRef.current.value,

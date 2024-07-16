@@ -21,7 +21,7 @@ const BlockLayout = React.forwardRef(
                                     direction={
                                         val.direction ? val.direction : "none"
                                     }
-                                    color={val.color ? val.color : "#dc2626"}
+                                    color={val.color ? val.color : "#991b1b"}
                                 />,
                             );
                             isTile = true;
@@ -43,7 +43,7 @@ const BlockLayout = React.forwardRef(
                                 key={n}
                                 row={i}
                                 col={j}
-                                color={"#dc2626"}
+                                color={"#991b1b"}
                             />,
                         );
                         n++;
@@ -93,7 +93,7 @@ export const ControlPanelBlockLayout = ({
                             <Tile
                                 name={val.name}
                                 key={n}
-                                color={val.color ? val.color : "#dc2626"}
+                                color={val.color ? val.color : "#991b1b"}
                             />,
                         );
                         isTile = true;
@@ -119,7 +119,7 @@ export const ControlPanelBlockLayout = ({
                                 <Tile
                                     name={val.name}
                                     key={n}
-                                    color={val.color ? val.color : "#d9f99d"}
+                                    color={val.color ? val.color : "#b91c1c"}
                                 />,
                             );
                             isTile = true;
@@ -129,7 +129,7 @@ export const ControlPanelBlockLayout = ({
                 });
                 if (!isTile) {
                     tempTileLayout.push(
-                        <EmptyTile key={n} row={i} col={j} color={"#dc2626"} />,
+                        <EmptyTile key={n} row={i} col={j} color={"#991b1b"} />,
                     );
                     n++;
                 }

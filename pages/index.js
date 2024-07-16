@@ -1,11 +1,35 @@
+import { FaBuildingColumns } from 'react-icons/fa6'
+import { RiBuilding2Line } from 'react-icons/ri'
+import { GiGate } from 'react-icons/gi'
+import Image from "next/image";
 import Link from "next/link";
 import Card, { CardBody, CardLink } from "../components/Card";
 
 export default function Home() {
     return (
-        <div className="grid grid-cols-3 text-5xl h-screen">
+        <div className="grid grid-cols-3 text-xl desktop:text-3xl wide:text-5xl h-screen">
             <div></div>
-            <div className="flex justify-center items-center">
+            <div className="relative flex justify-center items-center">
+				<div className="absolute top-0 text-center text-base wide:text-2xl">
+					<p className="inline-block align-middle">
+						La Reine Science Center
+					</p>
+					<RiBuilding2Line className="inline-block size-7 align-middle m-3"/>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						strokeWidth="1.5"
+						stroke="currentColor"
+						className="inline-block size-7"
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"
+						/>
+					</svg>
+				</div>
                 <Card>
                     <CardBody>
                         <CardLink href="/north">North</CardLink>
@@ -20,21 +44,53 @@ export default function Home() {
                     </CardBody>
                 </Card>
             </div>
-            <div></div>
-            <div className="flex justify-center items-center">
+            <div className="flex flex-col gap-2 items-center justify-center">
+				<Image src="/bmhs_crest.png" width={256} height={256} className="size-16 mobile:size-50 desktop:size-72" alt="BMHS CREST" priority/>
+				<Link className="border border-black p-2 rounded hover:bg-red-700 transition-all duration-300" href="/info/search">Search All Tiles</Link>
+			</div>
+            <div className="relative flex justify-center items-center">
                 <Card>
                     <CardBody>
                         <CardLink href="/west">West</CardLink>
                     </CardBody>
                 </Card>
+				<div className="absolute mr-3 bottom-0 text-center text-base wide:text-2xl wide:right-0 wide:bottom-1/2 wide:translate-y-1/2">
+					<p className="inline-block align-middle wide:block">
+						Main Gate
+					</p>
+					<GiGate className="inline-block size-7 align-middle m-3"/>
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="inline-block size-7 align-middle">
+					  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+					</svg>
+				</div>
             </div>
             <div></div>
-            <div className="flex justify-center items-center">
+            <div className="relative flex justify-center items-center">
                 <Card>
                     <CardBody>
                         <CardLink href="/south">South</CardLink>
                     </CardBody>
                 </Card>
+				<div className="absolute bottom-0 text-center text-base wide:text-2xl">
+					<p className="inline-block align-middle">
+						Main Building
+					</p>
+					<FaBuildingColumns className="inline-block size-7 align-middle m-3"/>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						strokeWidth="1.5"
+						stroke="currentColor"
+						className="inline-block size-7"
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
+						/>
+					</svg>
+				</div>
             </div>
             <div></div>
             <Link

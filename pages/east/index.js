@@ -9,6 +9,7 @@ import {
     searchPavers,
     locatePaverCoords,
 } from "../../services/utils";
+import { useSearchParams } from "next/navigation";
 
 export default function EastBlockPage() {
     // Tiles
@@ -17,6 +18,7 @@ export default function EastBlockPage() {
     const [upperTiles, setUpperTiles] = useState([]);
     const [coloredUpperTiles, setColoredUpperTiles] = useState([]);
     const [coloredLowerTiles, setColoredLowerTiles] = useState([]);
+	const [tilesRendered, setTilesRendered] = useState(false)
     // Tile Search
     const [searchResults, setSearchResults] = useState([]);
     const [searchRender, setSearchRender] = useState(false);
@@ -29,15 +31,56 @@ export default function EastBlockPage() {
     const upperBlockRef = useRef();
     const lowerBlockRef = useRef();
 
+	const searchParams = useSearchParams();
+
+	useEffect(() => {
+		if (tilesRendered) {
+			if (searchParams.has("row") && searchParams.has("col") && searchParams.has('section')) {
+				setSectRender(searchParams.get("section"))
+				setSearchRender(false)
+				const paver = {
+					row: JSON.parse(searchParams.get("row")),
+					col: JSON.parse(searchParams.get("col"))
+				}
+				locatePaverCoords(
+					searchParams.get("section"),
+					paver,
+					upperTiles,
+					lowerTiles,
+					setSearchRender,
+				)
+				setTimeout(() => {
+					if (searchParams.get("section") === "upper") {
+						upperBlockRef.current.scrollIntoView({
+							behavior: "smooth",
+							block: "end",
+							inline: "nearest",
+						});
+					} else {
+						lowerBlockRef.current.scrollIntoView({
+							behavior: "smooth",
+							block: "end",
+							inline: "nearest",
+						});
+					}
+				}, 100)
+			}
+		}
+	}, [tilesRendered])
+
     useEffect(() => {
-        getTiles(
-            setUpperTiles,
-            setLowerTiles,
-            setColoredUpperTiles,
-            setColoredLowerTiles,
-            setLoading,
-            "east",
-        );
+		async function getTilesAndSearchParams() {
+			await getTiles(
+				setUpperTiles,
+				setLowerTiles,
+				setColoredUpperTiles,
+				setColoredLowerTiles,
+				setLoading,
+				"east",
+			);
+			setTilesRendered(true)
+		}
+		getTilesAndSearchParams();
     }, []);
 
     function handleSearch(e) {

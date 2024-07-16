@@ -53,7 +53,7 @@ export default function FindPaverPage() {
                 </p>
                 <div className="border border-black w-1/2 p-6 m-auto">
                     <h1 className="text-5xl text-center mb-5">Search Tiles</h1>
-                    <MenuSelect className="block m-auto border border-black rounded w-2/3 text-2xl">
+                    <MenuSelect>
                         <MenuOption value="name">Tile Name</MenuOption>
                         <MenuOption value="description">
                             Tile Description
@@ -73,63 +73,63 @@ export default function FindPaverPage() {
                     of the block.
                 </p>
                 <p className="inline-block w-full text-xl text-center mt-10">
-                    If the tile looks like the following, you identify the tile
-                    within the layout, and then you walk directly forward to the
+                    If the tile looks like the following, identify the tile
+                    within the layout, then go in the direction forward to the
                     next row.
                 </p>
                 <div
-                    style={{ backgroundColor: "#0ea5e9" }}
+                    style={{ backgroundColor: "#1e293b" }}
                     className={
                         "flex flex-col items-center size-1/2 border border-black text-center m-auto font-bold text-xs mobile:text-base"
                     }
                 >
                     <h3 className="flex-initial">Up Tile</h3>
-                    <AiOutlineArrowUp className="flex-auto size-32" />
+                    <AiOutlineArrowUp className="flex-auto text-white size-32" />
                 </div>
                 <p className="inline-block w-full text-xl text-center mt-10">
-                    If the tile looks like the following, you identify the tile
-                    within the layout, and then you walk directly to the{" "}
+                    If the tile looks like the following, identify the tile
+                    within the layout, then go in the direction to the{" "}
                     <strong className="text-3xl text-bold">left</strong> and
                     find the next{" "}
                     <strong className="text-3xl text-bold">named</strong> paver.
                 </p>
                 <div
-                    style={{ backgroundColor: "#6ee7b7" }}
+                    style={{ backgroundColor: "#334155" }}
                     className={
                         "flex flex-col items-center size-1/2 border border-black text-center m-auto font-bold text-xs mobile:text-base"
                     }
                 >
                     <h3 className="flex-initial">Left Tile</h3>
-                    <AiOutlineArrowLeft className="flex-auto size-32" />
+                    <AiOutlineArrowLeft className="flex-auto text-white size-32" />
                 </div>
                 <p className="inline-block w-full text-xl text-center mt-10">
-                    If the tile looks like the following, you identify the tile
-                    within the layout, and then you walk directly to the{" "}
+                    If the tile looks like the following, identify the tile
+                    within the layout, then go in the direction to the{" "}
                     <strong className="text-3xl text-bold">right</strong> and
                     find the next{" "}
                     <strong className="text-3xl text-bold">named</strong> paver.
                 </p>
                 <div
-                    style={{ backgroundColor: "#5eead4" }}
+                    style={{ backgroundColor: "#334155" }}
                     className={
                         "flex flex-col items-center size-1/2 border border-black text-center m-auto font-bold text-xs mobile:text-base"
                     }
                 >
                     <h3 className="flex-initial">Right Tile</h3>
-                    <AiOutlineArrowRight className="flex-auto size-32" />
+                    <AiOutlineArrowRight className="flex-auto text-white size-32" />
                 </div>
                 <p className="inline-block w-full text-xl text-center mt-10">
-                    If the tile looks like the following, you identify the tile
-                    within the layout, and congratulations, you found your tile.
+                    If the tile looks like the following, identify the tile
+                    within the layout, congrats, on finding the tile.
                 </p>
                 <div
-                    style={{ backgroundColor: "white" }}
+                    style={{ backgroundColor: "#020617" }}
                     className={
                         "flex flex-col items-center size-1/2 border border-black text-center m-auto font-bold text-xs mobile:text-base"
                     }
                 >
                     <h3 className="flex-initial">X Marks The Spot</h3>
-                    <GiOpenTreasureChest className="flex-auto size-32" />
+                    <GiOpenTreasureChest className="flex-auto text-white size-32" />
                 </div>
             </div>
         </div>

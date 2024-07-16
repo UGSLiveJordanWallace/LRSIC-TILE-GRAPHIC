@@ -12,7 +12,7 @@ export async function signUp(email, password, confirmPassword) {
 
         return {
             successMessage:
-                "Signed Up Successfully, Check Email To Finish Registration",
+                "Signed Up Successfully, Check Email To Finish Registration (Check Your Spam)",
         };
     } catch (error) {
         return { errorMessage: `Couldn't Sign Up: ${error}` };
@@ -26,6 +26,15 @@ export async function signIn(email, password) {
     } catch (error) {
         return { errorMessage: `Couldn't Login: ${error}` };
     }
+}
+
+export async function requestPasswordReset(email) {
+	try {
+		await db.collection("users").requestPasswordReset(email)
+		return { successMessage: "Request Sent Successfully, Check Email To Finish Resetting Password (Check Your Spam)" }
+	} catch (error) {
+        return { errorMessage: `Couldn't Request Password Reset: ${error}` };
+	}
 }
 
 export async function adminSignIn(email, password) {

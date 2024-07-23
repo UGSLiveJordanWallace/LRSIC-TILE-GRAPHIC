@@ -1,6 +1,6 @@
 import { FaBuildingColumns } from 'react-icons/fa6'
 import { RiBuilding2Line } from 'react-icons/ri'
-import { GiGate } from 'react-icons/gi'
+import { GiFigurehead, GiGate } from 'react-icons/gi'
 import Image from "next/image";
 import Link from "next/link";
 import Card, { CardBody, CardLink } from "../components/Card";
@@ -37,15 +37,24 @@ export default function Home() {
                 </Card>
             </div>
             <div></div>
-            <div className="flex justify-center items-center">
+            <div className="relative flex justify-center items-center">
                 <Card>
                     <CardBody>
                         <CardLink href="/east">East</CardLink>
                     </CardBody>
                 </Card>
+				<div className="absolute ml-3 bottom-0 text-center text-base wide:text-2xl wide:left-0 wide:bottom-1/2 wide:translate-y-1/2">
+					<p className="inline-block align-middle wide:block">
+						Statue
+					</p>
+					<GiFigurehead className="inline-block size-7 align-middle m-3"/>
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="inline-block size-7">
+					  <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+					</svg>
+				</div>
             </div>
             <div className="flex flex-col gap-2 items-center justify-center">
-				<Image src="/bmhs_crest.png" width={256} height={256} className="size-16 mobile:size-50 desktop:size-72" alt="BMHS CREST" priority/>
+				<Image src="/bmhs_crest.png" width={256} height={256} className="size-24 mobile:size-50 desktop:size-72" alt="BMHS CREST" priority/>
 				<Link className="border border-black p-2 rounded hover:bg-red-700 transition-all duration-300" href="/info/search">Search All Tiles</Link>
 			</div>
             <div className="relative flex justify-center items-center">
@@ -94,7 +103,7 @@ export default function Home() {
             </div>
             <div></div>
             <Link
-                className="absolute top-0 right-0 m-10 p-3 rounded bg-white shadow-lg"
+                className="absolute top-0 left-0 m-10 p-3 rounded bg-white shadow-lg text-base"
                 href={"/info/help"}
             >
                 <svg
@@ -103,7 +112,7 @@ export default function Home() {
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
                     stroke="currentColor"
-                    className="size-9"
+                    className="size-9 m-auto"
                 >
                     <path
                         strokeLinecap="round"
@@ -111,6 +120,13 @@ export default function Home() {
                         d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
                     />
                 </svg>
+				<p className="block m-auto font-bold">INSTRUCTIONS</p>
+            </Link>
+            <Link
+                className="absolute top-0 right-0 m-10 p-3 rounded-md bg-orange-500 text-white shadow-lg text-base"
+                href={"https://www.givecampus.com/campaigns/25094/donations/new"}
+            >
+				<p className="block m-auto font-bold">Buy A Paver</p>
             </Link>
         </div>
     );

@@ -14,7 +14,7 @@ export default function ControlPanelPage() {
                 <p className="inline-block w-full text-center mt-10">
                     Control Panel Main Page
                 </p>
-                <div className="w-1/2 h-full m-auto">
+                <div className="h-full m-auto w-full mobile:w-1/2">
                     <nav className="flex justify-evenly border border-black w-full shadow-md text-xl overflow-auto mobile:text-5xl">
                         <button className="bg-none flex-auto shrink-0 p-4">
                             north

@@ -11,7 +11,7 @@ export default function SpreadsheetPage() {
                 <p className="inline-block w-full text-center mt-10">
                     The spread sheet
                 </p>
-                <div className="border border-black w-1/2 m-auto overflow-auto">
+                <div className="border border-black w-full m-auto overflow-auto mobile:w-1/2">
                     {[1, 2, 3, 4, 5, 6, 7].map((_, key) => {
                         return (
                             <form className="flex flex-row" key={key}>
@@ -131,7 +131,7 @@ export default function SpreadsheetPage() {
                     tiles that already exist, the pencil icon would appear. This
                     means that you can submit changes made on a specific tile.
                 </p>
-                <p className="inline-block w-full text-xl text-center">
+                <p className="inline-block w-full text-xl text-center mt-10">
                     The <strong className="text-3xl text-bold">Remove</strong>{" "}
                     button{" "}
                     <strong className="text-bold text-3xl text-red-500">

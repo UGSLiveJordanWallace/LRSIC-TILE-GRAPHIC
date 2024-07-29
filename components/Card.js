@@ -12,7 +12,7 @@ export const CardBody = ({ children }) => {
 export const CardLink = ({ children, href }) => {
     return (
         <Link
-            className="block w-full h-full p-6 rounded-lg hover:bg-red-700 transition duration-300 ease-in-out"
+            className="block w-full h-full p-3 mobile:p-6 rounded-lg hover:bg-red-700 transition duration-300 ease-in-out"
             href={href}
         >
             {children}

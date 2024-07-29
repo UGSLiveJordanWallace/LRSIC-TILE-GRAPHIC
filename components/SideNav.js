@@ -33,7 +33,7 @@ function NavButton({ children, onClick, view, ...props }) {
             onClick={onClick}
             {...props}
             className={clsx(
-                "p-5 w-full border-t-2 shadow hover text-center",
+                "p-5 w-full border-t-2 shadow hover text-center overflow-x-auto",
                 view === children && "bg-stone-200",
             )}
         >

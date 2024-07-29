@@ -228,7 +228,7 @@ export default function UploadPage() {
                     onSubmit={handleSubmit}
                 >
                     <label
-                        className="p-4 bg-white rounded-lg text-sm mobile:text-2xl shadow-lg hover:bg-stone-300 transition duration-500"
+                        className="p-4 bg-white rounded-lg text-smtext-nowrap mobile:text-2xl shadow-lg hover:bg-stone-300 transition duration-500"
                         htmlFor="file_upload"
                     >
                         Click Here To Upload Compatible File

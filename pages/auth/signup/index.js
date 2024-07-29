@@ -76,6 +76,15 @@ export default function SignUpPage() {
                     ref={passwordRef}
                     required
                 />
+                <label className="text-2xl">
+                    Confirm Password <span className="text-red-400">*</span>
+                </label>
+                <input
+                    type="password"
+                    className="border border-black rounded p-1"
+                    ref={confirmPasswordRef}
+                    required
+                />
                 <input
                     className="bg-green-400 w-full p-5 text-xl text-white font-bold rounded-sm"
                     type="submit"

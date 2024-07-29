@@ -103,7 +103,7 @@ export default function Home() {
             </div>
             <div></div>
             <Link
-                className="absolute top-0 left-0 m-10 p-3 rounded bg-white shadow-lg text-base"
+                className="absolute top-0 left-5 top-5 p-3 rounded bg-white shadow-lg text-base"
                 href={"/info/help"}
             >
                 <svg
@@ -112,7 +112,7 @@ export default function Home() {
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
                     stroke="currentColor"
-                    className="size-9 m-auto"
+                    className="size-6 m-auto mobile:size-9"
                 >
                     <path
                         strokeLinecap="round"
@@ -120,13 +120,14 @@ export default function Home() {
                         d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
                     />
                 </svg>
-				<p className="block m-auto font-bold">INSTRUCTIONS</p>
+				<p className="block m-auto font-bold text-sm mobile:text-base">INSTRUCTIONS</p>
             </Link>
             <Link
-                className="absolute top-0 right-0 m-10 p-3 rounded-md bg-orange-500 text-white shadow-lg text-base"
+                className="absolute top-0 right-5 top-5 p-3 rounded-md bg-orange-500 text-white shadow-lg text-base"
                 href={"https://www.givecampus.com/campaigns/25094/donations/new"}
+				target="_blank"
             >
-				<p className="block m-auto font-bold">Buy A Paver</p>
+				<p className="block m-auto font-bold text-sm mobile:text-base">Buy A Paver</p>
             </Link>
         </div>
     );

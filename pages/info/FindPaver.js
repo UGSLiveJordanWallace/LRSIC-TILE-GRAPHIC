@@ -20,7 +20,7 @@ export default function FindPaverPage() {
                 <p className="inline-block w-full text-center mt-10">
                     Find Button
                 </p>
-                <div className="grid grid-cols-3 m-auto w-1/3 relative border border-black rounded">
+                <div className="grid grid-cols-3 m-auto w-full relative border border-black rounded mobile:w-1/2">
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((val, key) => {
                         return (
                             <div
@@ -34,24 +34,30 @@ export default function FindPaverPage() {
                             </div>
                         );
                     })}
-                    <Button className="absolute left-10 bottom-10 rounded p-3 bg-white shadow-xl border border-neutral-900 text-7xl">
+                    <Button className="absolute left-5 bottom-5 rounded p-3 bg-white shadow-xl border border-neutral-900 text-7xl">
                         Find
                     </Button>
                 </div>
                 <p className="inline-block w-full text-xl text-center mt-10">
                     Once clicked the search screen will appear. You can find any
-                    paver within a block or section with this tool. The Tile
-                    Name option searches tiles based on their names, this does
-                    not mean that you can search based on what is visible, but
-                    the designated name of the tile. The Tile Description option
-                    searches tiles based on their description. The Search Page
-                    will auto populate based on what is typed in the search box.
+                    paver within a block or section with this tool. 
                     Click the close button to continue to the block Layout.
                 </p>
+				<p className="inline-block w-full text-xl text-center mt-10">
+					The Tile
+                    Name option searches tiles based on their names, this does
+                    not mean that you can search based on what is visible, just
+					the designated name of the tile.
+				</p>
+				<p className="inline-block w-full text-xl text-center mt-10">
+					The Tile Description option
+                    searches tiles based on their description. The Search Page
+                    will auto populate based on what is typed in the search box.
+				</p>
                 <p className="inline-block w-full text-center mt-10">
                     Search Tool
                 </p>
-                <div className="border border-black w-1/2 p-6 m-auto">
+                <div className="border border-black w-full p-6 m-auto mobile:w-1/2">
                     <h1 className="text-5xl text-center mb-5">Search Tiles</h1>
                     <MenuSelect>
                         <MenuOption value="name">Tile Name</MenuOption>
@@ -60,7 +66,7 @@ export default function FindPaverPage() {
                         </MenuOption>
                     </MenuSelect>
                     <input
-                        className="block w-2/3 mt-2 m-auto text-lg border border-neutral-900 rounded shadow-lg p-2"
+                        className="block w-full mt-2 m-auto text-lg border border-neutral-900 rounded shadow-lg p-2 mobile:w-2/3"
                         placeholder="What Are You Looking For?"
                         readOnly
                     />
@@ -80,10 +86,10 @@ export default function FindPaverPage() {
                 <div
                     style={{ backgroundColor: "#1e293b" }}
                     className={
-                        "flex flex-col items-center size-1/2 border border-black text-center m-auto font-bold text-xs mobile:text-base"
+                        "flex flex-col items-center size-2/3 h-44 border border-black text-center m-auto font-bold text-3xl mobile:size-1/2 mobile:text-5xl"
                     }
                 >
-                    <h3 className="flex-initial">Up Tile</h3>
+                    <h3 className="flex-initial text-white">Up Tile</h3>
                     <AiOutlineArrowUp className="flex-auto text-white size-32" />
                 </div>
                 <p className="inline-block w-full text-xl text-center mt-10">
@@ -96,10 +102,10 @@ export default function FindPaverPage() {
                 <div
                     style={{ backgroundColor: "#334155" }}
                     className={
-                        "flex flex-col items-center size-1/2 border border-black text-center m-auto font-bold text-xs mobile:text-base"
+                        "flex flex-col items-center size-2/3 h-44 border border-black text-center m-auto font-bold text-3xl mobile:size-1/2 mobile:text-5xl"
                     }
                 >
-                    <h3 className="flex-initial">Left Tile</h3>
+                    <h3 className="flex-initial text-white">Left Tile</h3>
                     <AiOutlineArrowLeft className="flex-auto text-white size-32" />
                 </div>
                 <p className="inline-block w-full text-xl text-center mt-10">
@@ -112,10 +118,10 @@ export default function FindPaverPage() {
                 <div
                     style={{ backgroundColor: "#334155" }}
                     className={
-                        "flex flex-col items-center size-1/2 border border-black text-center m-auto font-bold text-xs mobile:text-base"
+                        "flex flex-col items-center size-2/3 h-44 border border-black text-center m-auto font-bold text-3xl mobile:size-1/2 mobile:text-5xl"
                     }
                 >
-                    <h3 className="flex-initial">Right Tile</h3>
+                    <h3 className="flex-initial text-white">Right Tile</h3>
                     <AiOutlineArrowRight className="flex-auto text-white size-32" />
                 </div>
                 <p className="inline-block w-full text-xl text-center mt-10">
@@ -125,10 +131,10 @@ export default function FindPaverPage() {
                 <div
                     style={{ backgroundColor: "#020617" }}
                     className={
-                        "flex flex-col items-center size-1/2 border border-black text-center m-auto font-bold text-xs mobile:text-base"
+                        "flex flex-col items-center size-2/3 h-44 border border-black text-center m-auto font-bold text-3xl mobile:size-1/2 mobile:text-5xl"
                     }
                 >
-                    <h3 className="flex-initial">X Marks The Spot</h3>
+                    <h3 className="flex-initial text-white">X Marks The Spot</h3>
                     <GiOpenTreasureChest className="flex-auto text-white size-32" />
                 </div>
             </div>

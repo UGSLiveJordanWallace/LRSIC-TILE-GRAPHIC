@@ -3,7 +3,7 @@ import { IoIosArrowDropdownCircle } from "react-icons/io";
 
 const MenuSelect = React.forwardRef(({ children, ...rest }, ref) => {
     return (
-		<div className="relative w-1/2 m-auto">
+		<div className="relative w-full m-auto mobile:w-1/2">
 			<select className="appearance-none p-2 border border-black rounded text-2xl w-full" {...rest} ref={ref}>
 				{children}
 			</select>

@@ -15,7 +15,7 @@ export default function LayoutPage() {
                     This is a top-down perspective of the paver blocks facing
                     the Main Building
                 </p>
-                <div className="grid grid-cols-3 border border-black rounded shadow text-center w-1/2 m-auto text-5xl">
+                <div className="grid grid-cols-3 border border-black rounded shadow text-center w-full m-auto text-base desktop:text-3xl wide:text-5xl mobile:w-1/2">
                     <div></div>
                     <div className="flex flex-col justify-center items-center">
                         <div className="block text-base mb-10 w-full">
@@ -99,7 +99,7 @@ export default function LayoutPage() {
                 <p className="inline-block w-full text-center mt-10">
                     Upper and Lower Buttons
                 </p>
-                <div className="flex border border-black m-auto w-1/2 p-10 rounded items-center justify-center bg-stone-50">
+                <div className="flex border border-black m-auto w-full p-10 rounded items-center justify-center bg-stone-50 mobile:w-1/2">
                     <Button>Upper</Button>
                     <Button>Lower</Button>
                 </div>
